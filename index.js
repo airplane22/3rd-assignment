@@ -3,13 +3,20 @@ window.onload = async () => {
 	const loading = document.createElement("p");
 	loading.innerText = "Loading...";
 	app.appendChild(loading);
+
+
+	const pageUrl = document.location.href;
+	const movieId = pageUrl.split('?id=')[1];
+
+	console.log(movieId);
+
 	const main = async () => {
 		const {
 			data: {
 				data: { movie: data }
 			}
 		} = await axios.get(
-			"https://yts.lt/api/v2/movie_details.json?movie_id=2019"
+			`https://yts.lt/api/v2/movie_details.json?movie_id=${movieId}`
 		);
 
 		console.log(data);
