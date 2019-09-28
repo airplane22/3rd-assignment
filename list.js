@@ -32,7 +32,7 @@ window.onload = async () => {
 
 
             listTitle.innerText = moviedata.title;
-            listImg.src = moviedata.medium_cover_image;
+            listImg.src = moviedata.large_cover_image;
             moviedata.genres.forEach((item) => {
                 const genreSpan = document.createElement("span");
                 genreSpan.innerText = `${item}`;
@@ -52,7 +52,7 @@ window.onload = async () => {
 
             listCard.style.cursor = 'pointer';
             listCard.onclick = function() {
-                listCard.style.backgroundColor = "red";
+                listCard.style.backgroundColor = "dodgerblue";
                 location.href = "index.html?id="+moviedata.id;
             };
         });

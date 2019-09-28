@@ -1,15 +1,16 @@
 .cardContainer {
+
+    padding: 50px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding:0 8%;
+
 }
 
 .listCard {
-  min-height: 80px;
   background-color: white;
-  width: 45%;
+  width: 40%;
 
   display: flex;
   justify-content: space-between;
@@ -29,12 +30,18 @@
 /*  text-overflow: ellipsis;*/
 /*}*/
 
-/*.cardContainer:last-child {*/
-/*  padding: 20px 0;*/
-/*  width: 60%;*/
-/*}*/
+.imgCol {
+    width: 30%;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+}
 
-.cardContainer .listCard > h1 {
+.detailCol {
+  padding: 20px 0;
+  width: 60%;
+}
+
+.cardContainer h1 {
   font-size: 20px;
   font-weight: 600;
 }
@@ -50,13 +57,13 @@
   color: #b4b5bd;
 }
 
-.cardContainer .listCard > p {
+.cardContainer p {
   text-overflow: ellipsis;
   color: #b4b5bd;
   overflow: hidden;
 }
 
-.cardContainer .cardContainer > img {
+img {
   max-width: 100%;
   position: relative;
   top: -20px;
@@ -65,22 +72,27 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 667px) {
-  .cardContainer {
+  .listCard {
     width: 100%;
   }
+
+  .imgCol {
+    width: 100% !important;
+  }
+
 }
 
 @media screen and (min-width: 320px) and (max-width: 667px) and (orientation: portrait) {
-  .cardContainer {
+  .listCard {
     width: 100%;
     flex-direction: column;
   }
-  .listCard > img {
-    top: 0;
+  img {
+    top: -20px;
     left: 0;
     width: 100%;
   }
-  .cardContainer {
+  .imgCol {
     width: 100% !important;
   }
 }
