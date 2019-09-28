@@ -13,7 +13,7 @@ http.createServer(function(request, response){
        if(pathname == '/'){
 
              //list.html 파일을 읽습니다.
-             fs.readFile('list.html', function(error, data){
+             fs.readFile('index.css.html', function(error, data){
                     response.writeHead(200, {'Content-Type': 'text/html'});
                     response.end(data);
              });

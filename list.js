@@ -3,61 +3,35 @@ window.onload = async () => {
 	const loading = document.createElement("p");
 	loading.innerText = "Loading...";
 	app.appendChild(loading);
-	const cardContainer = document.createElement("div");
-	cardContainer.classList.add('cardContainer');
-	app.appendChild(cardContainer);
+
+
+	const pageUrl = document.location.href;
+	const movieId = pageUrl.split('?id=')[1];
+
+	console.log(movieId);
+
 	const main = async () => {
 		const {
 			data: {
-				data: { movies: data }
+				data: { movie: data }
 			}
 		} = await axios.get(
-			"https://yts.lt/api/v2/list_movies.json?sort_by=download_count"
+			`https://yts.lt/api/v2/movie_details.json?movie_id=${movieId}`
 		);
+
 		console.log(data);
-        data.forEach(function (moviedata) {
-            const listCard = document.createElement("div");
-            listCard.classList.add('listCard');
-
-            const imgCol = document.createElement("div");
-            imgCol.classList.add('imgCol');
-            const detailCol = document.createElement("div");
-            detailCol.classList.add('detailCol');
-
-            const listTitle = document.createElement("h1");
-            const listImg = document.createElement("img");
-            const listDesc = document.createElement("p");
-            const listGenres = document.createElement("div");
-            listGenres.classList.add('listGenres');
-
-
-            listTitle.innerText = moviedata.title;
-            listImg.src = moviedata.large_cover_image;
-            moviedata.genres.forEach((item) => {
-                const genreSpan = document.createElement("span");
-                genreSpan.innerText = `${item}`;
-                listGenres.append(genreSpan);
-            });
-            listDesc.innerText = moviedata.summary.slice(0,25) + '...';
-
-            imgCol.appendChild(listImg);
-            detailCol.appendChild(listTitle);
-            detailCol.appendChild(listGenres);
-            detailCol.appendChild(listDesc);
-
-            listCard.appendChild(imgCol);
-            listCard.appendChild(detailCol);
-            cardContainer.appendChild(listCard);
-
-
-            listCard.style.cursor = 'pointer';
-            listCard.onclick = function() {
-                listCard.style.backgroundColor = "dodgerblue";
-                location.href = "index.html?id="+moviedata.id;
-            };
-        });
-
+		const title = document.createElement("p");
+		const img = document.createElement("img");
+		const desc = document.createElement("p");
+		title.innerText = data.title_long;
+		img.src = data.medium_cover_image;
+		desc.innerText = data.description_full;
+		const card = document.createElement("p");
+		card.append(img, title, desc);
 		app.removeChild(loading);
+		app.appendChild(card);
 	};
+
 	await main();
 };
+
