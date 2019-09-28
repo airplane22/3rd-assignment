@@ -53,7 +53,7 @@ window.onload = async () => {
             listCard.style.cursor = 'pointer';
             listCard.onclick = function() {
                 listCard.style.backgroundColor = "dodgerblue";
-                location.href = "index.html?id="+moviedata.id;
+                location.href = "list.html?id="+moviedata.id;
             };
         });
 
